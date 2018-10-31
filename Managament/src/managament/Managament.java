@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -19,12 +20,14 @@ public class Managament extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("MovieManagement.fxml"));
-        
-        Scene scene = new Scene(root);
-        
-        stage.setScene(scene);
-        stage.show();
+        try{
+            AnchorPane root = FXMLLoader.load(getClass().getResource("EmployeeManagement.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();}
+        catch(Exception e){
+            e.printStackTrace();
+        }
     }
 
     /**

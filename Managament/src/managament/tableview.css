@@ -7,18 +7,12 @@
    -fx-font-weight: bold; 
    -fx-alignment: CENTER_LEFT;
 }
-.table-view .cell{
-   -fx-cell-size: 35;
-  -fx-alignment: center-left;
-  -fx-background-color: #D9D9D9;
-  -fx-border-color: #C9C9C9;
-  -fx-text-fill: lightgray;
-  -fx-alignment: CENTER_LEFT;
-   
+
 }
-.table-row-cell:selected {
-   -fx-background-color: whitesmoke; 
-   -fx-text-background-color:  #6622CC;
-   
-       
+.table-row-cell:empty {
+    -fx-background-color: lightyellow;
+}
+ 
+.table-row-cell:empty .table-cell {
+    -fx-border-width: 0px;
 }
