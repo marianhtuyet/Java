@@ -5,9 +5,8 @@
  */
 package Model;
 
-import com.sun.javafx.animation.TickCalculation;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.List;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -18,27 +17,32 @@ public class Employee {
     private String name;
     private String email;
     private String password;
-    private int sex;
+    private int gender;
     private int id_card_number;
     private int province_id;
     private String address;
-//    private Timestamp create_at;
-//    private Timestamp update_at;
 
-    public Employee(int id, String name, String email, String password, int sex, int id_card_number, int province_id, String address) {
+    public Employee(int id, String name, String email, String password, int gender, int id_card_number, int province, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.password = password;
-        this.sex = sex;
+        this.gender = gender;
         this.id_card_number = id_card_number;
-        this.province_id = province_id;
+        this.province_id = province;
         this.address = address;
-//        this.create_at = create_at;
-//        this.update_at = update_at;
     }
 
-    Employee() {
+    public  Employee(){}
+    public Employee(int id) {
+        this.id = id;
+        this.name = null;
+        this.email = null;
+        this.password = null;
+        this.gender = 0;
+        this.id_card_number = 0;;
+        this.province_id = 0;
+        this.address = null;
     }
 
     public int getId() {
@@ -57,8 +61,8 @@ public class Employee {
         return password;
     }
 
-    public int getSex() {
-        return sex;
+    public int getGender() {
+        return gender;
     }
 
     public int getId_card_number() {
@@ -90,8 +94,8 @@ public class Employee {
         this.password = password;
     }
 
-    public void setSex(int sex) {
-        this.sex = sex;
+    public void setGender(int gender) {
+        this.gender = gender;
     }
 
     public void setId_card_number(int id_card_number) {
@@ -105,16 +109,9 @@ public class Employee {
     public void setAddress(String address) {
         this.address = address;
     }
-public  void print(){
-            System.out.println(this.id);
-            System.out.println(this.name);
-            System.out.println(this.email);
-            System.out.println(this.sex);
-            System.out.println(this.password);
-            System.out.println(this.id_card_number);
-         
-             
-}
+
+
+    
 
     
 }
