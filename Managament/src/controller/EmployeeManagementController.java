@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 import Model.*;
 import Model.EmployeeDAO;
+import com.jfoenix.controls.JFXButton;
 import java.io.IOException;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
@@ -43,16 +44,22 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Cell;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableColumn.CellEditEvent;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.converter.IntegerStringConverter;
 import static javax.management.Query.value;
 import javax.print.DocFlavor;
 
@@ -88,65 +95,143 @@ public class EmployeeManagementController implements Initializable {
     private AnchorPane rootpanel;
     ///from add employees
     @FXML
-    private Button btnAdd;
+    private JFXButton btnAdd;
     @FXML
-    private Button btnDelete;
+    private JFXButton btnDelete;
     @FXML
-    private Button btnSave;
+    private JFXButton btnSave;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+
         Employees = new EmployeeDAO();
         listEmployees = Employees.getEmployee();
         setCellValueFactory();
         tbEmployee.setItems((ObservableList<Employee>) listEmployees);
-        tbEmployee.getColumns().addAll(colID, colName, colEmail, colGender, colCardNumber, colProvince_id, colAddress);
+//        tbEmployee.getColumns().addAll(colID, colName, colEmail, colGender, colCardNumber, colProvince_id, colAddress);
         tbEmployee.setEditable(true);
 //        ---edit cell in table
         setCellFactory();
-
-        colProvince_id.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, Province>>() {
-            @Override
-            public void handle(TableColumn.CellEditEvent<Employee, Province> event) {
-                TablePosition<Employee, Province> pos = event.getTablePosition();
-                Province newProvince = event.getNewValue();
-                int row = pos.getRow();
-                Employee employee = event.getTableView().getItems().get(row);
-
-                employee.setGender(newProvince.getIdProvince());
-
+        tbEmployee.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+//        colProvince_id.setOnEditCommit(new EventHandler<TableColumn.CellEditEvent<Employee, Province>>() {
+//            @Override
+//            public void handle(TableColumn.CellEditEvent<Employee, Province> event) {
+//                TablePosition<Employee, Province> pos = event.getTablePosition();
+//                Province newProvince = event.getNewValue();
+//                int row = pos.getRow();
+//                Employee employee = event.getTableView().getItems().get(row);
+//
+//                employee.setProvince_id(newProvince.getIdProvince());
+//
+//            }
+//        });
+//        colGender.setOnEditCommit((event) -> {
+//            TablePosition<Employee, gender> pos = event.getTablePosition();
+//            gender newgenner = event.getNewValue();
+//            int row = pos.getRow();
+//            Employee employee = event.getTableView().getItems().get(row);
+//            employee.setGender(newgenner.getCode());
+//
+//        });
+//
+//        colName.setOnEditCommit((CellEditEvent<Employee, String> event) -> {
+//            TablePosition<Employee, String> pos = event.getTablePosition();
+//            String newString = event.getNewValue();
+//            int row = pos.getRow();
+//            Employee employee = event.getTableView().getItems().get(row);
+//            employee.setName(newString);
+//            if (newString.contains("!") || newString.contains("@") || newString.contains("#") || newString.contains("$")
+//                    || newString.contains("%") || newString.contains("^") || newString.contains("&") || newString.contains("*")
+//                    || newString.contains("(") || newString.contains(")") || newString.contains(".") || newString.contains(",")
+//                    || newString.contains("/") || newString.contains("?")) {
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION, "The name have !@#$$%^&. Please press againt");
+//                alert.show();
+//            } else {
+//                
+//            }
+//        });
+//        colEmail.setOnEditCommit((CellEditEvent<Employee, String> event) -> {
+//            TablePosition<Employee, String> pos = event.getTablePosition();
+//            String newString = event.getNewValue();
+//            int row = pos.getRow();
+//            Employee employee = event.getTableView().getItems().get(row);
+//            employee.setEmail(newString);
+//        });
+//        colCardNumber.setOnEditCommit((CellEditEvent<Employee, Integer> event) -> {
+//            TablePosition<Employee, Integer> pos = event.getTablePosition();
+//            Integer newint = event.getNewValue();
+//            int row = pos.getRow();
+//            Employee employee = event.getTableView().getItems().get(row);
+//            employee.setId_card_number(newint);
+//        });
+//            colAddress.setOnEditCommit((CellEditEvent<Employee, String> event) -> {
+//            TablePosition<Employee, String> pos = event.getTablePosition();
+//            String newString = event.getNewValue();
+//            int row = pos.getRow();
+//            Employee employee = event.getTableView().getItems().get(row);
+//            employee.setAddress(newString);
+//            });
+        tbEmployee.addEventFilter(KeyEvent.KEY_PRESSED, new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent event) {
+                if (event.getCode() == KeyCode.ENTER) {
+                    return;
+                }
+                if (tbEmployee.getEditingCell() == null) {
+                    if (event.getCode().isLetterKey() ) {
+                        TablePosition focusePosition = tbEmployee.getFocusModel().getFocusedCell();
+                        tbEmployee.edit(focusePosition.getRow(), focusePosition.getTableColumn());
+                    }
+                }
             }
-        });
-        colGender.setOnEditCommit((event) -> {
-            TablePosition<Employee, gender> pos = event.getTablePosition();
-            gender newgenner = event.getNewValue();
-            int row = pos.getRow();
-            Employee employee = event.getTableView().getItems().get(row);
-            employee.setGender(newgenner.getCode());
 
         });
-        colName.setOnEditCommit(event -> {
-            TablePosition<Employee, String> pos = event.getTablePosition();
-            String newString = event.getNewValue();
-            int row = pos.getRow();
-            if (newString.contains("!") || newString.contains("@") || newString.contains("#") || newString.contains("$")
-                    || newString.contains("%") || newString.contains("^") || newString.contains("&") || newString.contains("*")
-                    || newString.contains("(") || newString.contains(")") || newString.contains(".") || newString.contains(",")
-                    || newString.contains("/") || newString.contains("?")) {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "The name have !@#$$%^&. Please press againt");
-
-                alert.show();
-            } else {
-                Employee employee = event.getTableView().getItems().get(row);
-                employee.setName(newString);
-            }
-        });
-        
+//        tbEmployee.addEventFilter(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+//            @Override
+//            public void handle(KeyEvent event) {
+//
+//                if (event.getCode() == KeyCode.ENTER) {
+//
+//                    // move focus & selection
+//                    // we need to clear the current selection first or else the selection would be added to the current selection since we are in multi selection mode 
+//                    TablePosition pos = tbEmployee.getFocusModel().getFocusedCell();
+//
+//                    if (pos.getRow() == -1) {
+//                        tbEmployee.getSelectionModel().select(0);
+//                    } // add new row when we are at the last row
+//                    else if (pos.getRow() == tbEmployee.getItems().size() - 1) {
+//                        addRow();
+//                    } // select next row, but same column as the current selection
+//                    else if (pos.getRow() < tbEmployee.getItems().size() - 1) {
+//                        tbEmployee.getSelectionModel().clearAndSelect(pos.getRow() + 1, pos.getTableColumn());
+//                    }
+//
+//                }
+//
+//            }
+//        });
+        tbEmployee.getSelectionModel().setCellSelectionEnabled(true);
+        //  tbEmployee.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
     }
 
-    @FXML
-    public void EditCell() {
+    public void addRow() {
+
+        // get current position
+        TablePosition pos = tbEmployee.getFocusModel().getFocusedCell();
+
+        // clear current selection
+        tbEmployee.getSelectionModel().clearSelection();
+
+        // create new record and add it to the model
+        Employee data = new Employee();
+        tbEmployee.getItems().add(data);
+
+        // get last row
+        int row = tbEmployee.getItems().size() - 1;
+        tbEmployee.getSelectionModel().select(row, pos.getTableColumn());
+
+        // scroll to new row
+        tbEmployee.scrollTo(data);
 
     }
 
@@ -177,50 +262,13 @@ public class EmployeeManagementController implements Initializable {
     }
 
     void setCellFactory() {
-        colName.setCellFactory(new Callback<TableColumn<Employee, String>, TableCell<Employee, String>>() {
-            @Override
-            public TableCell<Employee, String> call(TableColumn<Employee, String> param) {
-                TextFieldTableCell textField = new TextFieldTableCell();
-                textField.setAlignment(Pos.BASELINE_LEFT);
-
-                return textField;
-            }
-        });
-        colEmail.setCellFactory(new Callback<TableColumn<Employee, String>, TableCell<Employee, String>>() {
-            @Override
-            public TableCell<Employee, String> call(TableColumn<Employee, String> param) {
-                TextFieldTableCell textField = new TextFieldTableCell();
-                textField.setAlignment(Pos.BASELINE_LEFT);
-                return textField;
-            }
-        });
-        colCardNumber.setCellFactory(new Callback<TableColumn<Employee, Integer>, TableCell<Employee, Integer>>() {
-            @Override
-            public TableCell<Employee, Integer> call(TableColumn<Employee, Integer> param) {
-                TextFieldTableCell textField = new TextFieldTableCell();
-                textField.setAlignment(Pos.CENTER);
-                return textField;
-            }
-        });
-
-        colAddress.setCellFactory(new Callback<TableColumn<Employee, String>, TableCell<Employee, String>>() {
-            @Override
-            public TableCell<Employee, String> call(TableColumn<Employee, String> param) {
-                TextFieldTableCell textField = new TextFieldTableCell();
-                textField.setAlignment(Pos.CENTER);
-
-                return textField;
-            }
-        });
+        colName.setCellFactory(TextFieldTableCell.forTableColumn());
+        colEmail.setCellFactory(TextFieldTableCell.forTableColumn());
+         colCardNumber.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        colAddress.setCellFactory(TextFieldTableCell.forTableColumn());
         colGender.setCellFactory(ComboBoxTableCell.forTableColumn(genderList));
 
         colProvince_id.setCellFactory(ComboBoxTableCell.forTableColumn(listprovince));
-    }
-
-    public void Edittable() {
-        
-//     colID.setOnEditCommit(value);
-
     }
 
     @FXML
@@ -233,15 +281,6 @@ public class EmployeeManagementController implements Initializable {
         }
         listEmployees.add(new Employee(max + 1));
         tbEmployee.setItems((ObservableList<Employee>) listEmployees);
-        colID.setCellFactory(new Callback<TableColumn<Employee, Integer>, TableCell<Employee, Integer>>() {
-            @Override
-            public TableCell<Employee, Integer> call(TableColumn<Employee, Integer> param) {
-                TextFieldTableCell textField = new TextFieldTableCell();
-                textField.setAlignment(Pos.CENTER);
-
-                return textField;
-            }
-        });
     }
 
     @FXML
@@ -251,21 +290,29 @@ public class EmployeeManagementController implements Initializable {
     @FXML
     private void btnSaveClick(ActionEvent event) {
         for (Employee row : tbEmployee.getItems()) {
-            if (CheckEmployee(row) != 0) {
-                newEmployees.add(row);
-            } else {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "The information of employee was wrong! Please press againt");
-
-                System.out.print("Can't submit data");
-            }
+             newEmployees.add(row);
+//            if (CheckEmployee(row) != 0) {
+//                newEmployees.add(row);
+//            } else {
+//                Alert alert = new Alert(Alert.AlertType.INFORMATION, "The information of employee was wrong! Please press againt");
+//
+//                System.out.print("Can't submit data");
+//            }
 
         }
         for (int i = 0; i < newEmployees.size(); i++) {
+            if(i < listEmployees.size())
+            {
             if (listEmployees.get(i).getId() == newEmployees.get(i).getId()) {
                 Employees.UpdateEmployee(newEmployees.get(i));
             } else {
                 Employees.AddEmployee(newEmployees.get(i));
             }
+                
+            }
+            else
+                Employees.AddEmployee(newEmployees.get(i));
+            
         }
     }
 
@@ -286,8 +333,7 @@ public class EmployeeManagementController implements Initializable {
         }
         if (!e.getEmail().contains("@")) {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-            alert.show();
+            alert.showAndWait();
             return 0;
 
         }

@@ -40,7 +40,7 @@ public class Employee {
         this.email = null;
         this.password = null;
         this.gender = 0;
-        this.id_card_number = 0;;
+        //this.id_card_number = 0;
         this.province_id = 0;
         this.address = null;
     }

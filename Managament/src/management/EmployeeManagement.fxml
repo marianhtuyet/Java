@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -16,12 +16,12 @@
                   <Font size="35.0" />
                </font>
             </Label>
-            <Button fx:id="btnAdd" layoutX="838.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnAddClick" prefHeight="40.0" prefWidth="91.0" styleClass="buttonnormal" stylesheets="@style.css" text="Add" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.leftAnchor="838.0" AnchorPane.topAnchor="97.0" />
-            <Button fx:id="btnSave" layoutX="951.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnSaveClick" prefHeight="40.0" prefWidth="85.0" styleClass="buttonnormal" stylesheets="@style.css" text="Save" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="97.0" />
-            <Button fx:id="btnDelete" layoutX="1056.0" layoutY="97.0" mnemonicParsing="false" onAction="#btnDeleteClick" prefHeight="40.0" prefWidth="103.0" styleClass="buttonnormal" stylesheets="@style.css" text="Delete" textFill="WHITE" AnchorPane.bottomAnchor="25.0" AnchorPane.topAnchor="97.0" />
+            <JFXButton fx:id="btnAdd" layoutX="853.0" layoutY="99.0" onAction="#btnAddClick" prefHeight="37.0" prefWidth="91.0" styleClass="buttonnormal" stylesheets="@style.css" text="Add" />
+            <JFXButton fx:id="btnSave" layoutX="962.0" layoutY="100.0" onAction="#btnSaveClick" prefHeight="37.0" prefWidth="82.0" styleClass="buttonnormal" stylesheets="@style.css" text="Save" />
+            <JFXButton fx:id="btnDelete" layoutX="1072.0" layoutY="99.0" onAction="#btnDeleteClick" prefHeight="37.0" prefWidth="91.0" styleClass="buttonnormal" stylesheets="@style.css" text="Delete" />
          </children>
       </AnchorPane>
-      <TableView fx:id="tbEmployee" layoutX="14.0" layoutY="157.0" onMouseClicked="#EditCell" prefHeight="329.0" prefWidth="1198.0" styleClass="table-row-cell" stylesheets="@tableview.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="162.0">
+      <TableView fx:id="tbEmployee" layoutX="14.0" layoutY="157.0" prefHeight="329.0" prefWidth="1198.0" styleClass="table-row-cell" stylesheets="@tableview.css" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="9.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="162.0">
         <columns>
           <TableColumn fx:id="colID" prefWidth="84.0" text="ID" />
           <TableColumn fx:id="colName" prefWidth="206.0" text="Full Name" />

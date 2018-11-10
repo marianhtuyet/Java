@@ -14,7 +14,7 @@ public enum gender {
     /**
      *
      */
-    FEMALE(1, "Famale"), MALE(2, "Male");
+    FEMALE(1, "Female"), MALE(2, "Male");
  
    private int code;
    private String text;
