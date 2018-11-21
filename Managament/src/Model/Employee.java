@@ -19,10 +19,10 @@ public class Employee {
     private String password;
     private int gender;
     private int id_card_number;
-    private int province_id;
+    private String province_id;
     private String address;
 
-    public Employee(int id, String name, String email, String password, int gender, int id_card_number, int province, String address) {
+    public Employee(int id, String name, String email, String password, int gender, int id_card_number, String province, String address) {
         this.id = id;
         this.name = name;
         this.email = email;
@@ -41,7 +41,7 @@ public class Employee {
         this.password = null;
         this.gender = 0;
         //this.id_card_number = 0;
-        this.province_id = 0;
+        this.province_id = null;
         this.address = null;
     }
 
@@ -69,7 +69,7 @@ public class Employee {
         return id_card_number;
     }
 
-    public int getProvince_id() {
+    public String getProvince_id() {
         return province_id;
     }
 
@@ -102,7 +102,7 @@ public class Employee {
         this.id_card_number = id_card_number;
     }
 
-    public void setProvince_id(int province_id) {
+    public void setProvince_id(String province_id) {
         this.province_id = province_id;
     }
 

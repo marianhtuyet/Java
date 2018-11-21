@@ -74,7 +74,7 @@ public class EmployeeManagementController implements Initializable {
     List<Employee> listEmployees;
     ObservableList<Employee> list = FXCollections.observableArrayList();
     ObservableList<gender> genderList = FXCollections.observableArrayList(gender.values());
-    ObservableList<Province> listprovince = FXCollections.observableArrayList(Province.values());
+    ObservableList<Province> listprovince = FXCollections.observableArrayList();
     List<Employee> newEmployees = new ArrayList<Employee>();
     @FXML
     private TableView<Employee> tbEmployee;
@@ -250,15 +250,7 @@ public class EmployeeManagementController implements Initializable {
                 return new SimpleObjectProperty<gender>(gen);
             }
         });
-        colProvince_id.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Employee, Province>, ObservableValue<Province>>() {
-            @Override
-            public ObservableValue<Province> call(TableColumn.CellDataFeatures<Employee, Province> param) {
-                Employee employee = param.getValue();
-                int ProvinceId = employee.getProvince_id();
-                Province province = Province.getByCode(ProvinceId);
-                return new SimpleObjectProperty<Province>(province);
-            }
-        });
+        
     }
 
     void setCellFactory() {
@@ -304,14 +296,14 @@ public class EmployeeManagementController implements Initializable {
             if(i < listEmployees.size())
             {
             if (listEmployees.get(i).getId() == newEmployees.get(i).getId()) {
-                Employees.UpdateEmployee(newEmployees.get(i));
+               // Employees.UpdateEmployee(newEmployees.get(i));
             } else {
-                Employees.AddEmployee(newEmployees.get(i));
+                //Employees.AddEmployee(newEmployees.get(i));
             }
                 
             }
-            else
-                Employees.AddEmployee(newEmployees.get(i));
+            
+               // Employees.AddEmployee(newEmployees.get(i));
             
         }
     }

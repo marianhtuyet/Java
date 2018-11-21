@@ -38,11 +38,11 @@
 }
 
 .labelnormal{
-    -fx-background-color: #34343B;
+    /*-fx-background-color:  #34343B;*/
         -fx-font-weight: bold;
          -fx-font: corbel;
          -fx-text-fill: white;
-/*        -fx-font-size: 12px;*/
+        -fx-font-size: 16px;
 }
 .anchorpanel{
     -fx-background-image: url("../img/label.jpg");
@@ -60,4 +60,19 @@
     -fx-padding: 10 20 10 20;
     -fx-text-fill: white;
     -fx-font-size: 12px;
+}
+
+.textfield{
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.comboBox{
+     -fx-text-fill: #ffffff;
+     -fx-text-alignment: #ffffff;
+    -fx-font-size: 14px;
+}
+.comboBox .cell{
+    -fx-text-fill: white;
+    -fx-font: 16px "Arial";
 }

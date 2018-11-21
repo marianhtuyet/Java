@@ -13,9 +13,8 @@ import javafx.collections.ObservableList;
  *
  * @author MyPC
  */
-public enum Province {
+public class Province {
     
-    A(1, "Ha Noi"), B(2, "Ho Chi Minh"), C(3, "Dong Nai");
     private int IdProvince;
     private String NameProvinceString;
    
@@ -23,6 +22,10 @@ public enum Province {
     private Province(int IdProvince, String NameProvinceString) {
         this.IdProvince = IdProvince;
         this.NameProvinceString = NameProvinceString;
+    }
+
+    Province() {
+
     }
     public int getIdProvince() {
         return IdProvince;
@@ -39,14 +42,7 @@ public enum Province {
     public void setNameProvinceString(String NameProvinceString) {
         this.NameProvinceString = NameProvinceString;
     }
-    public static Province getByCode( int ID){
-       for(Province p : Province.values())
-       {
-           if(p.IdProvince == ID)
-               return p;
-       }
-       return null;
-    }
+    
    @Override
    public String toString() {
        return this.NameProvinceString;

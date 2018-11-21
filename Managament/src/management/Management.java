@@ -19,11 +19,12 @@ import javafx.stage.Stage;
 public class Management extends Application {
     
     @Override
-    public void start(Stage stage) throws Exception {
+    public void start(Stage stage)  {
         try{
-            AnchorPane root = FXMLLoader.load(getClass().getResource("EmployeeManagement.fxml"));
+            AnchorPane root = FXMLLoader.load(getClass().getResource("Employee_Management.fxml"));
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            stage.setTitle("Employees");
             stage.show();
         }
         catch(Exception e){
