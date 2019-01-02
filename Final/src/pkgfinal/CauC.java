@@ -32,33 +32,32 @@ public class CauC {
     JTextField tfSoXe, tfTenKH, tfMaBaoDuong, tfSoKM, tfNoiDung;
     JButton btnThemBaoDuong;
 
-    public CauC()
-    {
+    public CauC() {
         layout();
         tfSoXe.addActionListener(e -> {
-            String sql = "SELECT * FROM dbo.KhachHang INNER JOIN dbo.Xe ON Xe.MaKH = KhachHang.MaKH \n" +
-"WHERE SoXe = '"+tfSoXe.getText()+"'";
+            String sql = "SELECT * FROM dbo.KhachHang INNER JOIN dbo.Xe ON Xe.MaKH = KhachHang.MaKH \n"
+                    + "WHERE SoXe = '" + tfSoXe.getText() + "'";
             DBConnect1.dbConnect();
             ResultSet rs = null;
             try {
                 rs = DBConnect1.connection.createStatement().executeQuery(sql);
-                 while (rs.next()) {
-                    
+                while (rs.next()) {
+
                     tfTenKH.setText(rs.getString("HoTenKH"));
-                    
+
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(CauC.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
-        
+
         btnThemBaoDuong.addActionListener(e -> {
-            String sql = "insert into BaoDuong values (  '" +tfMaBaoDuong.getText()+"', '" 
-                    +String.valueOf(LocalDate.now())+"', null, " +tfSoKM.getText()+ ","
-                    + " '" +tfNoiDung.getText()+ "', '"+tfSoXe.getText()+"')";
+            String sql = "insert into BaoDuong values (  '" + tfMaBaoDuong.getText() + "', '"
+                    + String.valueOf(LocalDate.now()) + "', null, " + tfSoKM.getText() + ","
+                    + " '" + tfNoiDung.getText() + "', '" + tfSoXe.getText() + "')";
             System.out.println(sql);
             DBConnect1.dbConnect();
-            
+
             try {
                 int i = DBConnect1.connection.createStatement().executeUpdate(sql);
             } catch (SQLException ex) {
@@ -66,6 +65,7 @@ public class CauC {
             }
         });
     }
+
     void layout() {
         frame = new JFrame("Cau c");
         frame.setLayout(null);
@@ -131,7 +131,7 @@ public class CauC {
         frame.add(btnThemBaoDuong);
         frame.setVisible(true);
     }
-    
+
     public static void main(String[] args) throws SQLException {
         new CauC();
     }

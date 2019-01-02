@@ -67,7 +67,7 @@ public class cauB {
                 } catch (SQLException ex) {
                     Logger.getLogger(cauB.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                
+
             }
         });
 

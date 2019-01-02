@@ -42,12 +42,12 @@ public class CauD {
     JComboBox cmbCongViec, cmbSoXe;
     DefaultTableModel defaultTableModel;
     List<CongViec> listCV;
-List<BaoDuong> listBD;
-        
+    List<BaoDuong> listBD;
+
     public CauD() throws SQLException {
         layout();
         LoadCombobox();
-        
+
         LoadCmbSoXe();
         cmbCongViec.addItemListener(new ItemListener() {
             @Override
@@ -64,13 +64,12 @@ List<BaoDuong> listBD;
         jbtnThem.addActionListener(e -> {
             BaoDuong bd = (BaoDuong) cmbSoXe.getSelectedItem();
             int row = tbJTable.getRowCount();
-            
-            for(int i = 0; i< row; i++)
-            {
-               String TenCV =  tbJTable.getValueAt(i, 0).toString();
-               String MaCV = getCongViec(TenCV).getMaCV();
+
+            for (int i = 0; i < row; i++) {
+                String TenCV = tbJTable.getValueAt(i, 0).toString();
+                String MaCV = getCongViec(TenCV).getMaCV();
                 DBConnect1.dbConnect();
-                String sql = "insert into CT_BD values ('"+bd.getMaBD()+"', '" + MaCV+ "')";
+                String sql = "insert into CT_BD values ('" + bd.getMaBD() + "', '" + MaCV + "')";
                 System.out.println(sql);
                 try {
                     int rs = DBConnect1.connection.createStatement().executeUpdate(sql);
@@ -81,15 +80,15 @@ List<BaoDuong> listBD;
         });
     }
 
-    public CongViec getCongViec(String TenCV)
-    {
-        for(CongViec cv : listCV)
-        {
-           if(cv.getTenCongViec().equals(TenCV))
+    public CongViec getCongViec(String TenCV) {
+        for (CongViec cv : listCV) {
+            if (cv.getTenCongViec().equals(TenCV)) {
                 return cv;
+            }
         }
         return null;
     }
+
     public void LoadCombobox() throws SQLException {
         listCV = new ArrayList<CongViec>();
         //load het tat ca cong viec len cmb
@@ -107,15 +106,15 @@ List<BaoDuong> listBD;
         for (CongViec cv : listCV) {
             cmbCongViec.addItem(cv);
         }
-        
+
     }
 
     public void LoadCmbSoXe() throws SQLException {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
-         listBD = new ArrayList<>();
+        listBD = new ArrayList<>();
         String sql = "select * from BaoDuong where NgayGioNhan = '" + date + "'";
-         DBConnect1.dbConnect();
+        DBConnect1.dbConnect();
         ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
 
         while (rs.next()) {
@@ -123,7 +122,7 @@ List<BaoDuong> listBD;
             bd.setMaBD(rs.getString("MaBD"));
             bd.setNgayGioNhan(rs.getString("NgayGioNhan"));
             bd.setSoXe(rs.getString("SoXe"));
-                    listBD.add(bd);
+            listBD.add(bd);
         }
         for (BaoDuong bd : listBD) {
             cmbSoXe.addItem(bd);
