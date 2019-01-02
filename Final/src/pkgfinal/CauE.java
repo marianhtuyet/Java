@@ -73,6 +73,11 @@ public class CauE {
         cmbSoXe.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
+                int row = tbJTable.getRowCount();
+                for(int i = 0; i < row; i++)
+                {
+                defaultTableModel.removeRow(i);
+                }
                 int TongTien = 0;
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     BaoDuong cv = (BaoDuong) cmbSoXe.getSelectedItem();
@@ -91,7 +96,6 @@ public class CauE {
                             TongTien += Tong;
                         }
                     } catch (SQLException ex) {
-                        Logger.getLogger(CauE.class.getName()).log(Level.SEVERE, null, ex);
                     }
                     jtfThanhTien.setText(String.valueOf(TongTien));
                 }
@@ -106,9 +110,7 @@ public class CauE {
             DBConnect1.dbConnect();
             try {
                 int i = DBConnect1.connection.createStatement().executeUpdate(sql);
-                System.out.println("pkgfinal.CauE.<init>()");
             } catch (SQLException ex) {
-                Logger.getLogger(CauE.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         });

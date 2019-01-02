@@ -61,11 +61,9 @@ public class cauB {
                 DBConnect1.dbConnect();
                 String sql = "insert into Xe values ('" + xe.getSoXe() + "', '" + xe.getHangXe() + "', " + xe.getNamSX()
                         + ", '" + xe.getMaKH() + "')";
-                System.out.println(sql);
                 try {
                     int i = DBConnect1.connection.createStatement().executeUpdate(sql);
                 } catch (SQLException ex) {
-                    Logger.getLogger(cauB.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }

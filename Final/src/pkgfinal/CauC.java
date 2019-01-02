@@ -47,7 +47,6 @@ public class CauC {
 
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(CauC.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
 
@@ -55,13 +54,11 @@ public class CauC {
             String sql = "insert into BaoDuong values (  '" + tfMaBaoDuong.getText() + "', '"
                     + String.valueOf(LocalDate.now()) + "', null, " + tfSoKM.getText() + ","
                     + " '" + tfNoiDung.getText() + "', '" + tfSoXe.getText() + "')";
-            System.out.println(sql);
             DBConnect1.dbConnect();
 
             try {
                 int i = DBConnect1.connection.createStatement().executeUpdate(sql);
             } catch (SQLException ex) {
-                Logger.getLogger(CauC.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

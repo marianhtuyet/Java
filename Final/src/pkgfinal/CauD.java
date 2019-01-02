@@ -74,7 +74,6 @@ public class CauD {
                 try {
                     int rs = DBConnect1.connection.createStatement().executeUpdate(sql);
                 } catch (SQLException ex) {
-                    Logger.getLogger(CauD.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });
