@@ -1,8 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+
 package pkgfinal;
 
 import finalexam.DBConnect1;
@@ -59,10 +56,11 @@ public class cauB {
                 xe.setHangXe(tfHangXe.getText());
                 xe.setSoXe(tfSoXe.getText());
                 DBConnect1.dbConnect();
-                String sql = "insert into Xe values ('" + xe.getSoXe() + "', '" + xe.getHangXe() + "', " + xe.getNamSX()
+                String sql = "insert into Xe values ('" + xe.getSoXe() + "', '" 
+                        + xe.getHangXe() + "', " + xe.getNamSX()
                         + ", '" + xe.getMaKH() + "')";
                 try {
-                    int i = DBConnect1.connection.createStatement().executeUpdate(sql);
+        int i = DBConnect1.connection.createStatement().executeUpdate(sql);
                 } catch (SQLException ex) {
                 }
 

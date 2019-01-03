@@ -35,7 +35,8 @@ public class CauC {
     public CauC() {
         layout();
         tfSoXe.addActionListener(e -> {
-            String sql = "SELECT * FROM dbo.KhachHang INNER JOIN dbo.Xe ON Xe.MaKH = KhachHang.MaKH \n"
+            String sql = "SELECT * FROM dbo.KhachHang INNER JOIN dbo.Xe "
+                    + "ON Xe.MaKH = KhachHang.MaKH \n"
                     + "WHERE SoXe = '" + tfSoXe.getText() + "'";
             DBConnect1.dbConnect();
             ResultSet rs = null;
@@ -51,13 +52,16 @@ public class CauC {
         });
 
         btnThemBaoDuong.addActionListener(e -> {
-            String sql = "insert into BaoDuong values (  '" + tfMaBaoDuong.getText() + "', '"
-                    + String.valueOf(LocalDate.now()) + "', null, " + tfSoKM.getText() + ","
-                    + " '" + tfNoiDung.getText() + "', '" + tfSoXe.getText() + "')";
+            String sql = "insert into BaoDuong values (  '" + 
+                    tfMaBaoDuong.getText() + "', '"
+                    + String.valueOf(LocalDate.now()) + "', null, " +
+                    tfSoKM.getText() + ","
+                    + " '" + tfNoiDung.getText() + "', '" +
+                    tfSoXe.getText() + "')";
             DBConnect1.dbConnect();
 
             try {
-                int i = DBConnect1.connection.createStatement().executeUpdate(sql);
+           int i = DBConnect1.connection.createStatement().executeUpdate(sql);
             } catch (SQLException ex) {
             }
         });

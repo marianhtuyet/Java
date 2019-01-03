@@ -69,10 +69,11 @@ public class CauD {
                 String TenCV = tbJTable.getValueAt(i, 0).toString();
                 String MaCV = getCongViec(TenCV).getMaCV();
                 DBConnect1.dbConnect();
-                String sql = "insert into CT_BD values ('" + bd.getMaBD() + "', '" + MaCV + "')";
+                String sql = "insert into CT_BD values ('" +
+                        bd.getMaBD() + "', '" + MaCV + "')";
                 System.out.println(sql);
                 try {
-                    int rs = DBConnect1.connection.createStatement().executeUpdate(sql);
+         int rs = DBConnect1.connection.createStatement().executeUpdate(sql);
                 } catch (SQLException ex) {
                 }
             }
@@ -93,7 +94,7 @@ public class CauD {
         //load het tat ca cong viec len cmb
         String sql = "select * from CongViec";
         DBConnect1.dbConnect();
-        ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
+     ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
 
         while (rs.next()) {
             CongViec cv = new CongViec();
@@ -112,9 +113,9 @@ public class CauD {
         LocalDate date = LocalDate.now();
         System.out.println(date.toString());
         listBD = new ArrayList<>();
-        String sql = "select * from BaoDuong where NgayGioNhan = '" + date + "'";
+    String sql = "select * from BaoDuong where NgayGioNhan = '" + date + "'";
         DBConnect1.dbConnect();
-        ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
+     ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
 
         while (rs.next()) {
             BaoDuong bd = new BaoDuong();

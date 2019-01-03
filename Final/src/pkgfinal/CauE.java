@@ -51,11 +51,12 @@ public class CauE {
         jtfNgayNhan.addActionListener(e -> {
             String date = jtfNgayNhan.getText();
             listBD = new ArrayList<>();
-            String sql = "select * from BaoDuong where  NgayGioNhan = '" + date + "'";
+            String sql = "select * from BaoDuong "
+                    + "where  NgayGioNhan = '" + date + "'";
             DBConnect1.dbConnect();
             ResultSet rs = null;
             try {
-                rs = DBConnect1.connection.createStatement().executeQuery(sql);
+       rs = DBConnect1.connection.createStatement().executeQuery(sql);
                  while (rs.next()) {
                     BaoDuong bd = new BaoDuong();
                     bd.setMaBD(rs.getString("MaBD"));
@@ -63,7 +64,6 @@ public class CauE {
                     listBD.add(bd);
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(CauE.class.getName()).log(Level.SEVERE, null, ex);
             }
            
             for (BaoDuong bd : listBD) {
@@ -82,11 +82,15 @@ public class CauE {
                 if (e.getStateChange() == ItemEvent.SELECTED) {
                     BaoDuong cv = (BaoDuong) cmbSoXe.getSelectedItem();
 
-                    String sql = "select CongViec.TenCongViec, CongViec.DonGia from CT_BD inner join CongViec "
-                            + "on CT_BD.MaCV = CongViec.MaCv where MaBD = '" + cv.getMaBD() + "'";
+                    String sql = "select CongViec.TenCongViec,"
+                            + " CongViec.DonGia from CT_BD "
+                            + "inner join CongViec "
+                            + "on CT_BD.MaCV = CongViec.MaCv "
+                            + "where MaBD = '" + cv.getMaBD() + "'";
                     DBConnect1.dbConnect();
                     try {
-                        ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
+     
+ ResultSet rs = DBConnect1.connection.createStatement().executeQuery(sql);
                         while (rs.next()) {
                             Vector v = new Vector();
                             v.add(rs.getString("TenCongViec"));
@@ -105,11 +109,12 @@ public class CauE {
         jbtnThanhToan.addActionListener(e -> {
             LocalDate date = LocalDate.now();
             BaoDuong cv = (BaoDuong) cmbSoXe.getSelectedItem();
-            String sql = "UPDATE dbo.BaoDuong SET NgayGioTra = '" + date.toString() + "' WHERE MaBD = '" + cv.getMaBD() + "'";
+     String sql = "UPDATE dbo.BaoDuong SET NgayGioTra = '" + date.toString() +
+             "' WHERE MaBD = '" + cv.getMaBD() + "'";
             System.out.println(sql);
             DBConnect1.dbConnect();
             try {
-                int i = DBConnect1.connection.createStatement().executeUpdate(sql);
+            int i = DBConnect1.connection.createStatement().executeUpdate(sql);
             } catch (SQLException ex) {
             }
 
