@@ -158,11 +158,9 @@ public class DiaDiemController implements Initializable {
             alert1.show();
         }
         else {
-        int id;
-        id=max+1;
-        String s=String.valueOf(id);
+        
         DiaDiem dd = new DiaDiem();
-        dd.setMaDiaDiem(s);
+      
         dd.setTenDiaDiem(tfTenDiaDiem.getText());
         dd.setDiaChi(tfDiaChi.getText());
         btnAdd.setVisible(true);
@@ -262,14 +260,15 @@ public class DiaDiemController implements Initializable {
                 ddDao.Sua(dd);
                 Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
                 alert1.setTitle("Thông báo");
-                alert1.setHeaderText("Xin chúc mừng:");
-                alert1.setContentText("Thêm thành công!");
+                alert1.setHeaderText("Góc chúc mừng:");
+                alert1.setContentText("Thành công yeah yeah!!");
                 alert1.showAndWait();
             
             }catch(Exception e){
-                System.out.println("Không thể thêm dữ liệu!");
+                System.out.println("Không thể thêm dữ liệu!!!");
                 Alert alert2 = new Alert(Alert.AlertType.INFORMATION);
                 alert2.setTitle("Thông báo");
+                alert2.setHeaderText("Góc chia buồn:");
                 alert2.setContentText("Lỗi cập nhật dữ liệu!!");
                 alert2.showAndWait();
             };
@@ -301,6 +300,7 @@ public class DiaDiemController implements Initializable {
 
     @FXML
     private void btnNhapMoiClick(ActionEvent event) throws SQLException{
+        tfMaDiaDiem.setEditable(true);
         btnAdd.setVisible(true);
         btnSua.setVisible(false);
         btnXoa.setVisible(false);

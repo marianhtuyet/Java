@@ -287,8 +287,8 @@ public class HocSinhController implements Initializable {
             HocSinh hs = hocsinhDAO.SearchHocSinh(sql);
             listStudents.clear();
             listStudents.add(hs);
-            if (hs.getMaHS() == 0) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+            if (hs == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Warming");
                 alert.setContentText("Không tìm thấy học sinh bạn yêu cầu!");
                 alert.show();
@@ -305,8 +305,8 @@ public class HocSinhController implements Initializable {
             HocSinh hs = hocsinhDAO.SearchHocSinh(sql);
             listStudents.clear();
             listStudents.add(hs);
-            if (hs.getMaHS() == 0) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
+            if (hs == null) {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText("Warming");
                 alert.setContentText("Không tìm thấy học sinh bạn yêu cầu!");
                 alert.show();

@@ -115,9 +115,9 @@ public class StudentDAO {
         return list;
     }
      public void AddHocSinh(HocSinh hs) {
-        String sql = "EXEC dbo.InsertHocSinh '" +hs.getTenHS() +"' , '" + hs.getNgaySinh() + "',' " + hs.getDiaChi() +
-                "',' "+ hs.getTenCha() + "',' " + hs.getTenMe() + "',' " + hs.getTenNguoiGiamHo() +"' ,'" + hs.getSDT()+
-                "','" + hs.getMaLop() + "',  " + hs.getNamHoc();
+        String sql = "EXEC dbo.InsertHocSinh '" +hs.getTenHS() +"' " + hs.getNgaySinh() + "' " + hs.getDiaChi() +
+                "' "+ hs.getTenCha() + "' " + hs.getTenMe() + "' " + hs.getTenNguoiGiamHo() +"' " + hs.getSDT()+
+                "' " + hs.getMaLop() + " " + hs.getNamHoc();
         System.out.println(sql);
         try {
             int stmt = DBConnect.dbExcuteQuery(sql);

@@ -115,9 +115,8 @@ public class ChiPhiController implements Initializable {
         tfTienXe.setText(String.valueOf(cp.getTienXe()));
         tfVeCong.setText(String.valueOf(cp.getVetCong()));
         float tong;
-        tong = Float.parseFloat(tfLinhTinh.getText()) + Float.parseFloat(tfNuocUong.getText()) + Float.parseFloat(tfPhiHDV.getText())
-                    + Float.parseFloat(tfTienAnTrua.getText()) + Float.parseFloat(tfTienAnXe.getText()) + Float.parseFloat(tfTienXe.getText())
-                    + Float.parseFloat(tfVeCong.getText());
+        tong = cp.getLinhTinh() + cp.getNuocUong() + cp.getPhiHDV() + cp.getTienAnTrua() + cp.getTienAnXe()
+                + cp.getTienXe() + cp.getVetCong();
         tfTongTien.setText(String.valueOf(tong));
     }
 

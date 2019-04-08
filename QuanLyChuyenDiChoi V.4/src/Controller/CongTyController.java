@@ -104,9 +104,7 @@ public class CongTyController implements Initializable {
     }
     public boolean addCongTy() throws SQLException {
         congTyDAO = new CongTyDAO();
-        int id;
-        id = congTyDAO.MaxMaCongTy()+ 1;
-        String s = String.valueOf(id);
+      
         String tenCongTy = tfTenCongTy.getText();
         String diaChi = tfDiaChi.getText();
         String SDT = tfSDT.getText();

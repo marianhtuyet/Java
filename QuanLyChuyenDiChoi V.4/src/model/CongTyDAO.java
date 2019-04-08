@@ -40,7 +40,7 @@ public class CongTyDAO {
         return list;
     }
        public  boolean ThemCongTy( String tenCongTy, String diaChi, String SDT) throws SQLException{
-        String sql ="INSERT INTO dbo.CongTyDuLich( TenCongTy ,DiaChi ,SDT) " +
+        String sql ="INSERT INTO dbo.CongTyDuLich(  TenCongTy ,DiaChi ,SDT) " +
                     "VALUES  ( N'"+tenCongTy+"' , N'"+diaChi+"' , N'"+SDT+"' )";
         System.out.println(sql);
         int row = DBConnect.dbExcuteQuery(sql);

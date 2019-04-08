@@ -15,12 +15,12 @@
          <children>
             <AnchorPane prefHeight="114.0" prefWidth="316.0">
                <children>
-                  <Label layoutX="77.0" layoutY="14.0" prefHeight="60.0" prefWidth="187.0" text="Hiệu trưởng" textFill="WHITE">
+                  <Label layoutX="112.0" layoutY="14.0" prefHeight="60.0" prefWidth="152.0" text="Username" textFill="WHITE">
                      <font>
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <Circle fill="#486b53" layoutX="44.0" layoutY="44.0" radius="30.0" stroke="#294a31" strokeType="INSIDE" />
+                  <Circle fill="#486b53" layoutX="56.0" layoutY="42.0" radius="30.0" stroke="#294a31" strokeType="INSIDE" />
                </children>
             </AnchorPane>
             <AnchorPane prefHeight="47.0" prefWidth="316.0" />

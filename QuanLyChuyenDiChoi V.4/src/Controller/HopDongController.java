@@ -218,28 +218,13 @@ public class HopDongController implements Initializable {
 
     public boolean addHopDong() throws SQLException {
         hopDongDAO = new HopDongDAO();
-        int id;
-        id = hopDongDAO.MaxMaHopDong() + 1;
-        String s = String.valueOf(id);
+        
         String maChuyenDi = tfMaChuyenDi.getText();
         String maCongTy = cmbTenCongTy.getValue().getMaCongTy();
         Date ngayKy = Date.valueOf(dpNgayKy.getValue());
-        if(checkNumber(tfTriGia1.getText()))
-        {
-             float triGia = Float.parseFloat(tfTriGia1.getText());
-            
+        float triGia = Float.parseFloat(tfTriGia1.getText());
+
         return hopDongDAO.themHopDong( maChuyenDi, maCongTy, triGia, ngayKy);
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Giá tiền phải là kiểu số");
-        alert.setContentText("Vui lòng nhập lại !");
-        }
-                    
-       return false;
-        
     }
 
     public boolean addThanhToan() throws SQLException {
@@ -258,20 +243,10 @@ public class HopDongController implements Initializable {
         String maHopDong = tfMaHopDong1.getText();
         String maChuyenDi = tfMaChuyenDi.getText();
         String maCongTy = cmbTenCongTy.getValue().getMaCongTy();
-         Date ngayKy = Date.valueOf(dpNgayKy.getValue());
-        if(checkNumber(tfTriGia1.getText()))
-        {
-            float triGia = Float.parseFloat(tfTriGia1.getText());
-            return hopDongDAO.SuaHopDong(maHopDong, maChuyenDi, maCongTy, triGia, ngayKy);
-        }
-        else
-        {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Thông báo");
-        alert.setHeaderText("Giá tiền phải là kiểu số");
-        alert.setContentText("Vui lòng nhập lại !");
-        }
-       return false;
+        float triGia = Float.parseFloat(tfTriGia1.getText());
+        Date ngayKy = Date.valueOf(dpNgayKy.getValue());
+
+        return hopDongDAO.SuaHopDong(maHopDong, maChuyenDi, maCongTy, triGia, ngayKy);
     }
 
     public boolean deleteHopDong() throws SQLException {
@@ -283,7 +258,7 @@ public class HopDongController implements Initializable {
     public void showAlertDeleteHopDong() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText("Bạn có chắc chắn muốn xóa");
+        alert.setHeaderText("Báº¡n cĂ³ cháº¯c cháº¯n muá»‘n xĂ³a?");
         alert.setContentText("");
 
         ButtonType buttontypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
@@ -295,14 +270,14 @@ public class HopDongController implements Initializable {
         Optional<ButtonType> result = alert.showAndWait();
 
         Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
-        alert1.setTitle("Thông báo");
+        alert1.setTitle("ThĂ´ng bĂ¡o");
         alert1.setHeaderText("");
         if (result.get() == buttontypeYes) {
             if (deleteHopDong() == true) {
-                alert1.setContentText("Xóa thành công");
+                alert1.setContentText("XĂ³a thĂ nh cĂ´ng");
                 alert1.show();
             } else {
-                alert1.setContentText("Xóa thất bại");
+                alert1.setContentText("XĂ³a that bai");
                 alert1.show();
             }
 
@@ -324,7 +299,7 @@ public class HopDongController implements Initializable {
     public void showAlertDeleteThanhToan() throws SQLException {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation");
-        alert.setHeaderText("Bạn chắc chắn muốn xóa?");
+        alert.setHeaderText("Báº¡n cĂ³ cháº¯c cháº¯n muá»‘n xĂ³a?");
         alert.setContentText("");
 
         ButtonType buttontypeYes = new ButtonType("YES", ButtonBar.ButtonData.YES);
@@ -360,13 +335,14 @@ public class HopDongController implements Initializable {
         String maHopDong = tfTimMaHopDong.getText();
         listHopDong = hopDongDAO.SearchHopDong(maHopDong);
         if (listHopDong.isEmpty()) {
-            Alert alert1 = new Alert(Alert.AlertType.ERROR);
+            Alert alert1 = new Alert(Alert.AlertType.INFORMATION);
             alert1.setTitle("Thông báo");
             alert1.setHeaderText("Không tìm thấy");
             alert1.show();
-        } else {
-            setCellValueFactoryHopDong();
-            tbHopDong.setItems(listHopDong);
+        }
+        else{
+        setCellValueFactoryHopDong();
+        tbHopDong.setItems(listHopDong);
         }
 
     }
@@ -397,7 +373,7 @@ public class HopDongController implements Initializable {
         System.out.println("TienDaDong:" + tienDaDong);
         System.out.println("Con no:" + conNo);
         if (conNo > 0) {
-            tfConNo.setText("-" + conNo);
+            tfConNo.setText("+" + conNo);
         } else {
             tfConNo.setText(String.valueOf(conNo));
         }
@@ -596,12 +572,5 @@ public class HopDongController implements Initializable {
         tongThanhToan();
         conNo();
     }
-  private boolean checkNumber(String s) {
-        try {
-            Float.parseFloat(s);
-        } catch (NumberFormatException e) {
-            return false;
-        }
-        return true;
-    }
+
 }

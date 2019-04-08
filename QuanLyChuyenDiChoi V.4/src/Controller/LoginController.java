@@ -99,21 +99,7 @@ public class LoginController implements Initializable {
             alert.setHeaderText("Error");
             alert.setContentText("Không đúng tên hoặc mật khẩu! Vui lòng nhập lại");
             alert.show();
-        }
-        if(check == 1)
-        {
-             ((Node) event.getSource()).getScene().getWindow().hide();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/quanlychuyendichoi/Main_GV.fxml"));
-            Parent parent = fxmlLoader.load();
-            MainGVController main = fxmlLoader.<MainGVController>getController();
-            Stage stage = new Stage();
-            Scene scene = new Scene(parent);
-            stage.setScene(scene);
-            stage.setTitle("Login");
-            stage.setMaximized(true);
-            stage.show();
-        }
-        else {
+        } else {
             ((Node) event.getSource()).getScene().getWindow().hide();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/quanlychuyendichoi/Main.fxml"));
             Parent parent = fxmlLoader.load();
@@ -132,10 +118,7 @@ public class LoginController implements Initializable {
         for (User u : list) {
             if (u.getEmail().equals(user.getEmail())) {
                 if (u.getPassword().equals(user.getPassword())) {
-                    if( u.getLevel() == 1)
-                        return 1;
-                    else
-                        return 2;
+                    return 1;
                 } else {
                     return 0;
                 }
